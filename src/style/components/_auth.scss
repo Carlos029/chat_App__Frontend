@@ -1,0 +1,40 @@
+.auth__main{
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    background-color: $primary; //esto es de styles/settings
+    margin: 0px;
+    height: 100vh;
+    width: 100%;
+}
+
+.auth__box-container{
+    background-color:  white;
+    box-shadow: 3px 3px $dark-grey;
+    border-radius:  2px;
+    padding: 20px;
+    width: 340px;
+}
+
+.auth__title {
+    color: darken($color:$primary, $amount: 20);   //darken() oscurece el color
+    margin-bottom: 20px;
+}
+
+.auth__input{
+    color: $dark-grey;
+    border:0px;
+    border-bottom: 1px solid $light-grey;
+    font-size: 16px;
+    margin-bottom: 10px;
+    height: 20px;
+    width: 100%;
+
+    transition: border-bottom .3s ease;
+
+    &:focus {    //esto es lo mismo q declaralo afuera como: .auth__input:focus{}
+    outline: none;
+    border-bottom: 1px solid $primary;
+    }
+}
+
