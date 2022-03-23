@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2';
 import { startLogout } from '../../actions/auth'
 import { useForm } from '../../hooks/useForm';
 import { useSockets } from '../../hooks/useSockets';
@@ -10,13 +11,13 @@ export const ChatScreen = () => {
 
   const { currentSocket } = useSelector(state => state.socket)
   const dispatch = useDispatch()
-  const [users, messages,privateMessages] = useSockets()
+  const [users, messages, privateMessages] = useSockets()
   const [{ uid, message }, handleInputChange] = useForm({
     uid: "",
     message: ""
   })
-  
-  const { de:name, mensaje: privateMessage } = privateMessages || {}
+
+  const { de: name, mensaje: privateMessage } = privateMessages || {}
 
 
   const handleLogout = () => {
@@ -37,6 +38,15 @@ export const ChatScreen = () => {
     }
 
     currentSocket.emit('enviar-mensaje', { mensaje: message, uid })
+    
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Email Sent',
+      showConfirmButton: false,
+      timer: 1500
+    })
+
   }
 
   return (
@@ -48,7 +58,7 @@ export const ChatScreen = () => {
 
             <h3>Send Message</h3>
             <hr />
-            <p style={{opacity:"0.5"}}>Enter a user's uid if you want to send a private message</p>
+            <p style={{ opacity: "0.5" }}>Enter a user's uid <b>if</b> you want to send a private message</p>
             <input
               name="uid"
               type="text"
@@ -91,6 +101,8 @@ export const ChatScreen = () => {
 
             </ul>
 
+            <button className='btn-text btn-danger ' onClick={handleLogout}>logout</button>
+
           </div>
 
           <div className="col-sm-6">
@@ -111,27 +123,24 @@ export const ChatScreen = () => {
                     </li>
                   )
                 })
-                
+
               }
 
               {
 
-              privateMessages &&
+                privateMessages &&
 
-                  <li>
-                    <h5 className='text-danger'>Private message from {name}</h5>
-                    <span className='fs-6 text-muted'>{privateMessage}</span>
-                  </li>
-              
+                <li>
+                  <h5 className='text-danger'>Private message from {name}</h5>
+                  <span className='fs-6 text-muted'>{privateMessage}</span>
+                </li>
+
               }
 
             </ul>
           </div>
 
         </div>
-
-        <button className='btn-text btn-danger ' onClick={handleLogout}>logout</button>
-
       </div>
 
     </>
