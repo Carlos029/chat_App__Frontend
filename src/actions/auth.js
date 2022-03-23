@@ -13,16 +13,8 @@ export const startRegister = (name, email, password) => {
 
         if (resp.ok) {
 
-            const { usuario: { uid, nombre: name }, token } = body // the backend gives the user/name in spanish so i change it back to english
-
-            localStorage.setItem('x-token', token) //recives the JWT and set it in the localStorage
-            localStorage.setItem('token-init-date', new Date().getTime())
-
-            dispatch(login({
-                uid: uid,
-                name: name
-            }))
-
+            dispatch(startLogin(email,password))
+           
         } else {
 
             if (body.errors) {
@@ -38,6 +30,7 @@ export const startRegister = (name, email, password) => {
 export const startLogin = (email, password) => {
 
     return async (dispatch) => {
+
         const resp = await fetch_Without_Token('auth/login', { correo: email, password }, "POST") //the backend recives name and email in spanish
         const body = await resp.json()
 
