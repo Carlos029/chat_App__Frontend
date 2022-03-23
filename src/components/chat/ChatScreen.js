@@ -37,15 +37,19 @@ export const ChatScreen = () => {
       return
     }
 
+    if(uid.length > 10){
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'message sent',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+
     currentSocket.emit('enviar-mensaje', { mensaje: message, uid })
+
     
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Email Sent',
-      showConfirmButton: false,
-      timer: 1500
-    })
 
   }
 
