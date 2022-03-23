@@ -26,7 +26,6 @@ export const fetch_With_Token = async (endpoint, data, method = "GET") => {
 
     const url = `${baseUrl}/api/${endpoint}`
     const token = localStorage.getItem('x-token') || ''  //verify if i already have a token in localStorage. if not, the backend has an validation, that will not let me continue 
-    console.log(url)
 
 
     if (method = "GET") {
