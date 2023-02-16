@@ -27,7 +27,14 @@ export const AppRouter = () => {
 
     if (checking) {
         return (
-            <h1>...Loading</h1>
+            <div className="loading">
+            <div className="loading__text">Loading</div>
+            <div className='loading_dots'>
+              <span className="loading__dot" style={{'--i': 1}}></span>
+              <span className="loading__dot" style={{'--i': 2}}></span>
+              <span className="loading__dot" style={{'--i': 3}}></span>
+            </div>
+          </div>
         )
     }
 

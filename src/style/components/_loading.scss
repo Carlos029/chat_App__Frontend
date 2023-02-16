@@ -1,0 +1,44 @@
+.loading {
+    position: relative;
+    height: 100vh;
+    background-color: #4d4d4d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loading__text {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+  }
+
+  .loading__dot {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #0077c2;
+    border-radius: 50%;
+    animation: bounce 0.5s infinite alternate;
+    animation-delay: calc(var(--i) * 0.1s);
+  }
+
+.loading_dots{
+    display: flex;
+    width: 120px;
+    justify-content: space-evenly;
+}
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-30px);
+    }
+  }
